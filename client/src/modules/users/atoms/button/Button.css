@@ -7,3 +7,15 @@ button {
     padding: 7px 15px;
     margin: 5px;
 }
+
+button.danger {
+    background-color: #d33746;
+}
+
+button.info {
+    background-color: #83a0d1;
+}
+
+button.success {
+    background-color: #3db562;
+}

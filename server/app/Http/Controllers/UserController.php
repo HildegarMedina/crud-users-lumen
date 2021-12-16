@@ -69,7 +69,7 @@ class UserController extends Controller implements UserControllerI {
     public function update($id, Request $request): JsonResponse {
 
         $this->validate($request, [
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required'
         ]);
 

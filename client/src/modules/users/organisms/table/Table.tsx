@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { UserContexts } from '../../../../contexts/UserContext';
 import Button from '../../atoms/button/Button';
 import { User } from '../../types/User';
 import './Table.css';
@@ -7,6 +9,9 @@ interface TableProps {
 }
 
 function Table(prop: TableProps) {
+
+    const { deleteUser, updateUser } = useContext(UserContexts)
+
     return (
         prop.rows.length > 0 ? (
             <table>
@@ -26,7 +31,10 @@ function Table(prop: TableProps) {
                             <td key={index+1+'id'}>{value.id}</td>
                             <td key={index+1+'email'}>{value.email}</td>
                             <td key={index+1+'pass'}>{value.password}</td>
-                            <td><Button text="Editar"/> <Button text="Eliminar"/></td>
+                            <td>
+                                <Button text="Editar" color='info' onPress={() => updateUser(value.id, value.email, value.password)}/> 
+                                <Button text="Eliminar" color='danger' onPress={() => deleteUser(value.id)}/>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

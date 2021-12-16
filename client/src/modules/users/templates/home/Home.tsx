@@ -16,17 +16,16 @@ function HomeTemplate() {
   return (
       <>
         <Header/>
-          <div className='container mt-20'>
-            <div className="col-6">
-              {users && (
-                <Table rows={users}/>
-              )}
-            </div>
-            <div className="col-6">
-              <Form/>
-            </div>
+        <div className='container mt-20'>
+          <div className="col-6">
+            {users && (
+              <Table rows={users}/>
+            )}
           </div>
-        <Footer/>
+          <div className="col-6">
+            <Form/>
+          </div>
+        </div>
       </>
   );
 }

@@ -1,6 +1,7 @@
 input {
     padding: 7px 16px;
     margin-bottom: 5px;
-    border: 1px solid #1d1d1d;
+    background-color: #f7f7f7;
+    border: 1px solid #d1d1d1;
     border-radius: 5px;
 }

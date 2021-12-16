@@ -7,12 +7,12 @@ import './Form.css';
 
 function Form() {
 
-  const { email, password, createUser, setEmail, setPassword } = useContext(UserContexts);
+  const { email, password, saveUser, setEmail, setPassword, resetInput } = useContext(UserContexts);
 
   return (
       <>
         <form>
-            <h2>Create user</h2>
+            <h2>Form</h2>
 
             <Input type='text' title='Email' value={email} onPress={(event) => {
               setEmail(event.target.value);
@@ -21,7 +21,8 @@ function Form() {
               setPassword(event.target.value);
             }}/>
 
-            <Button text='Create' onPress={createUser}/>
+            <Button text='Save' color='success' onPress={saveUser}/>
+            <Button text='Clear' onPress={resetInput}/>
         </form>
       </>
   );
