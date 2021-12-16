@@ -1,9 +1,14 @@
+import { UserContextsProvider } from '../../../../contexts/UserContext';
 import HomeTemplate from '../../templates/home/Home';
 
 function Home() {
   return (
       <>
-        <HomeTemplate/>
+        <UserContextsProvider>
+          <div>
+            <HomeTemplate/>
+          </div>
+        </UserContextsProvider>
       </>
   );
 }

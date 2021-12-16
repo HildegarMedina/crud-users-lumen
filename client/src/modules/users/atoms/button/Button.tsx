@@ -2,11 +2,16 @@ import './Button.css';
 
 interface PropsButton {
     text: string
+    onPress?: () => void
 }
 
 function Button(prop: PropsButton) {
     return (
-        <button>
+        <button type='button' onClick={() => {
+            if (prop.onPress) {
+                prop.onPress();
+            }
+        }}>
             {prop.text}
         </button>
     );

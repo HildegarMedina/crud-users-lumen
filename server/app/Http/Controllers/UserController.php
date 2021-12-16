@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Request as RC;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\JsonResponse;
 
 
@@ -57,7 +56,7 @@ class UserController extends Controller implements UserControllerI {
 
         $new_user = new User;
         $new_user->email = $request->input('email');
-        $new_user->password = Crypt::encrypt($request->input('password'));
+        $new_user->password = $request->input('password');
         $new_user->save();
         $this->status_code = 201;
       
@@ -77,7 +76,7 @@ class UserController extends Controller implements UserControllerI {
         $user = User::find($id);
         if ($user) {
             $user->email = $request->input('email');
-            $user->password = Crypt::encrypt($request->input('password'));
+            $user->password =$request->input('password');
             $user->save();
             $this->status_code = 200;
         }else {
