@@ -1,0 +1,8 @@
+ul {
+    list-style: none;
+    display: flex;
+    margin-left: auto;
+}
+ul li {
+    margin: 10px;
+}
