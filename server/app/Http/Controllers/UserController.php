@@ -40,28 +40,58 @@ class UserController extends Controller{
     *Create user
     */
     public function create(Request $request) {
-        if ($request->has(['email', 'password'])) {
-            $user = User::firstWhere('email', $request->input('email'));
-            if ($user) {
-                $this->status_code = 409;
-                $this->message = 'email_already_exists';
-            }else {
-                $new_user = new User;
-                $new_user->email = $request->input('email');
-                $new_user->password = Crypt::encrypt($request->input('password'));
-                $new_user->save();
-                $this->status_code = 201;
-            }
+
+        $this->validate($request, [
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
+        ]);
+
+        $new_user = new User;
+        $new_user->email = $request->input('email');
+        $new_user->password = Crypt::encrypt($request->input('password'));
+        $new_user->save();
+        $this->status_code = 201;
+      
+        return RC::response($this->status_code, $this->message, null, null);
+    }
+    
+    /**
+    *Update user
+    */
+    public function update($id, Request $request) {
+
+        $this->validate($request, [
+            'email' => 'required|email|unique:users',
+            'password' => 'required'
+        ]);
+
+        $user = User::find($id);
+        if ($user) {
+            $user->email = $request->input('email');
+            $user->password = Crypt::encrypt($request->input('password'));
+            $user->save();
+            $this->status_code = 200;
         }else {
-            $this->status_code = 400;
-            if (!$request->has('email')) {
-                $this->message = 'email_is_required';
-            }else {
-                $this->message = 'password_is_required';
-            }
+            $this->status_code = 404;
+            $this->message = 'user_not_found';
         }
 
         return RC::response($this->status_code, $this->message, null, null);
     }
-    
+
+    /**
+    *Delete user
+    */
+    public function delete($id) {
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            $this->status_code = 204;
+        }else {
+            $this->status_code = 404;
+            $this->message = 'user_not_found';
+        }
+
+        return RC::response($this->status_code, $this->message, null, null);
+    }
 }
