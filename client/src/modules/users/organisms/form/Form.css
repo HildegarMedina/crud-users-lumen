@@ -1,0 +1,16 @@
+h2 {
+    margin-bottom: 10px;
+}
+form {
+    padding: 20px;
+    border: 1px solid #d1d1d1;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+@media(max-width:768px) {
+    form {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
