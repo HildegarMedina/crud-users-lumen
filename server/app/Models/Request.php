@@ -2,8 +2,15 @@
 
 namespace App\Models;
 
-class Request {
-    public static function response($status_code=null, $message=null, $data=null, $items=null) {
+use Illuminate\Http\JsonResponse;
+
+interface RequestI {
+    public static function response($status_code, $message, $data, $items): JsonResponse;
+}
+
+class Request implements RequestI {
+
+    public static function response($status_code=null, $message=null, $data=null, $items=null): JsonResponse {
         if ($status_code == null) {$status_code = '200';}
 
         $response = [];
@@ -22,4 +29,5 @@ class Request {
 
         return response()->json($response, $status_code);
     }
+    
 }

@@ -5,15 +5,24 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Request as RC;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Http\JsonResponse;
 
-class UserController extends Controller{
+
+interface UserControllerI {
+    public function index(): JsonResponse;
+    public function get_by_id($id): JsonResponse;
+    public function create(Request $request): JsonResponse;
+    public function update($id, Request $request): JsonResponse;
+}
+
+class UserController extends Controller implements UserControllerI {
 
     public $data=null, $message=null, $items=null;
 
     /**
     *Get all users
     */
-    public function index() {
+    public function index(): JsonResponse {
         $all_users = User::all();
         return RC::response(null, null, null, $all_users);
     }
@@ -21,7 +30,7 @@ class UserController extends Controller{
     /**
     *Get user by id
     */
-    public function get_by_id($id) {
+    public function get_by_id($id): JsonResponse {
 
         $user = User::find($id);
         if ($user) {
@@ -39,7 +48,7 @@ class UserController extends Controller{
     /**
     *Create user
     */
-    public function create(Request $request) {
+    public function create(Request $request): JsonResponse {
 
         $this->validate($request, [
             'email' => 'required|email|unique:users',
@@ -58,7 +67,7 @@ class UserController extends Controller{
     /**
     *Update user
     */
-    public function update($id, Request $request) {
+    public function update($id, Request $request): JsonResponse {
 
         $this->validate($request, [
             'email' => 'required|email|unique:users',
