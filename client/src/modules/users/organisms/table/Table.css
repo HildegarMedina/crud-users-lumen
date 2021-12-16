@@ -1,0 +1,25 @@
+table {
+    text-align: left;
+    border-collapse: collapse;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+table thead {
+    background-color: #2980b9;
+    color: #fff;
+    text-transform: capitalize;
+}
+table tr td, table tr th {
+    border: 1px solid #d1d1d1;
+    padding: 2px 5px;
+}
+table tr th {
+    padding: 5px;
+}
+@media(max-width:768px) {
+    table {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+}
