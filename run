@@ -1,0 +1,22 @@
+#!/bin/bash
+
+if [ "$1" == "" ]; then
+    echo "Usage:"
+    echo
+    echo -e "\033[1;32m  $0 client \033[0m       - run client    (React.js)"
+    echo -e "\033[1;32m  $0 server \033[0m       - run server    (Laravel/Lumen)"
+    echo
+    exit 0
+fi
+
+cd $(dirname $0)
+
+if [ "$1" == "client" ] || [ "$1" == "client/" ]; then
+    cd client
+    npm run start
+fi
+
+if [ "$1" == "server" ] || [ "$1" == "server/" ];then
+    cd server
+    php -S localhost:8000 -t public
+fi
