@@ -20,6 +20,10 @@ body, html {
   width: 50%;
 }
 
+.mt-20 {
+  margin-top: 20px;
+}
+
 @media(max-width: 768px) {
   .container .col-6 {
     width: 100%;
